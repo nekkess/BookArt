@@ -1,3 +1,4 @@
 config.py   
 *.xlsx
-.idea   
+.idea 
+__pycache__
