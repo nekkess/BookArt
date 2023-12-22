@@ -4,8 +4,9 @@ import pandas as pd
 
 
 class Database:
-    def __init__(self, excel_filepath: str):
-        self.full_df = pd.read_excel(excel_filepath)
+    def __init__(self, csv_file: str):
+        #load from csv
+        self.full_df = pd.read_csv(csv_file)
 
     @staticmethod
     def match_strings(text1: str, text2: str) -> float:
@@ -34,14 +35,15 @@ class Database:
         sliced_df = df.loc[indexes]
         return sliced_df
     
-    def get_url(self, author: str, title: str):
-        sliced_df: pd.DataFrame = self.search_column(author, -5, 'AUTHOR', self.full_df, threshold= 0.3)
-        return self.search_column(title, 1, 'TITLE', sliced_df)['URL'].values[0]
+    def get_url(self, author: str):
+        return self.search_column(author, -5, 'name', self.full_df, threshold= 0.3)
+        # return self.search_column(title, 1, 'TITLE', sliced_df)['URL'].values[0]
+        
         
 
 if __name__ == "__main__":
-    db = Database(os.path.join("assets", "catalog.xlsx"))
-    print(db.get_url('Ilia Repin', 'Death of Ivans son'))
+    db = Database(os.path.join("assets", "artists.csv"))
+    print(db.get_url('Rene Magritte'))
 
    
 

@@ -2,3 +2,4 @@ config.py
 *.xlsx
 .idea 
 __pycache__
+assets
